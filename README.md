@@ -1,4 +1,4 @@
-# Decoding The Viral Proteome
+# 🧫 Decoding The Viral Proteome
 
 Viruses are our planet's most abundant biological entities, consisting largely of genetic material enclosed in a protein coat. However, unlike the cells that viruses prey on, they are incapable of carrying out metabolic processes or self-replication. Instead, they employ a cunning strategy, relying on the very cells they invade to proliferate. By delving into viruses' genetic code, we can unearth their evolutionary lineages, decipher their strategies for eluding their host's immune systems, and even engineer precise weapons in the form of vaccines to shield against their infectious capabilities. This is all made possible through the use of modern bioinformatics techniques. 
 
@@ -27,7 +27,7 @@ data = json.load(viral_genome)
 ```
 Next, let’s take a look at the partial contents of this JSON file, which contains information about the coding regions in the herpes virus genome and proteins encoded with that sequence:
 
-<img src="images/json_contents.jpg" alt="Description" width="400" height="200">
+<img src="images/json_contents.jpg" alt="Description" width="600" height="200">
 
 Now, here's an explanation of the JSON contents:
 - This first section of the JSON file provides information about the entire herpes virus genome. The field ```''name'':''-''``` specifies the name of the sequence, which is this case is left blank.
@@ -114,9 +114,8 @@ Now, lets break the code above down one step at a time to better understand how 
 (Fig. 2. The relative frequencies of all 20 amino acids in the herpes virus envelope, membrane, and capsid.)
 
 The image above shows the relative frequencies of all twenty amino acids in the herpes virus envelope, membrane, and capsid. Whereas arginine is the most common amino acid in the entire herpes virus proteome, its frequency is more modest in envelope, membrane, and capsid. Instead, threonine (T) is the most common amino acid in the herpes virus envelope and membrane, whereas glutamine (Q) is most common in the capsid. Now, the question is why? After some research, I found the following quote in a paper titled, Role of Herpes Simplex Virus 1 Immediate Early Protein ICP22 in Viral Nuclear Egress ([Maruzuru et al.,](https://github.com/evanpeikon/viral-proteome/blob/main/references.md)):
-```
+
 “A heterodimeric complex, designated the nuclear egress complex (NEC), between the HSV-1 proteins UL31 and UL34, conserved in all known herpesviruses, is critical for primary envelopment…In addition, an HSV-1 serine/threonine protein kinase, Us3, which has been shown to phosphorylate the NEC, is thought to be involved in primary envelopment because it is able to regulate the localization of UL31 and UL34 at the nuclear membrane and to phosphorylate the nuclear lamina.”
-```
 
 In lay terms, this quote says that the nuclear egress complex (NEC) is evolutionarily conserved, meaning it is present in all known herpes viruses. The NEC comprises two different proteins, UL31 and UL34, which come together to form a single functional unit. Additionally, the NEC is called a heterodimeric complex because it is made of two different protein subunits (UL31 and UL34) working together. The quote also says that the NEC is involved in primary envelopment, the initial step in the process by which newly formed herpes virus nucleocapsids (DNA+proteins) exit a cell's nucleus, where they were initially assembled. The process of primary envelopment is essential for the virus to complete its replication cycle and infect new cells. Additionally, the protein kinase Us3 is known to phosphorylate (i.e., add phosphate groups to) the proteins UL31 and UL34, modifying them in a way that is needed to form the primary envelope. Us3 is a serine/threonine kinase, and we can see if it plays a critical role in the herpes virus primary envelopment, which may explain why threonine is the most commonly coded for amino acid in both the envelope and membrane.
 
@@ -140,14 +139,14 @@ for category, aa_relative_freq in aa_relative_freq_per_category.items():
   print('\t' + get_aa_states(min_aa, category)
 ```
 Which produces the following output:
-<img src="images/code_output.png" alt="Description" width="400" height="200">
+<img src="images/code_output.png" alt="Description" width="800" height="200">
 
 Now, let’s break this code down line by line to understand how it works:
 - First, ```from operator import itemgetter``` imports the itemgetter function, which will be used extract the amino acids with the highest and lowest frequencies.
 - Then, ```def get_aa_stats(aa, category):``` initiates a function that takes two arguments including ```aa``` (amino acid) and ```category``` (protein category). It then generates a string that summarizes statistics about a specific amino acid in a given category.
 - The code then enters a for loop, which iterates over the ```aa_relative_freq_per_category.items():``` dictionary using the protein categories as keys and the ```aa_relative_freq``` dictionary as the corresponding value.
 - Finally, ```max_aa, _ = max(aa_relative_freq.items(), key = itemgetter(1))``` identifies the amino acid with the highest relative frequency (max_aa) with a given category, whereas ```min_aa, _ = max(aa_relative_freq.items(), key = itemgetter(1))``` does the opposite.
-- 
+  
 The code then prints the name of each category, as well as summary statistics including the amino acids with the highest and lowest relative frequencies and how those compare to the background frequencies for those amino acids.
 
 ## References 
